@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <link rel="icon" type="image/png" href="img/whatsapp.png">
+    <title>WhatsApp Sem Salvar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Integração do Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa; /* Alterei a cor de fundo para um tom de cinza claro */
+            margin-bottom: 60px; /* Adicionei margem inferior para o rodapé */
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        label {
+            margin-bottom: 10px;
+        }
+
+        input {
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        /* Rodapé */
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #343a40; /* Cor de fundo do rodapé */
+            color: #ffffff; /* Cor do texto do rodapé */
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                max-width: 80%;
+                margin: 50px auto;
+            }
+
+            .btn {
+                padding: 12px; /* aumentei o padding para destacar mais o botão */
+                border-radius: 5px; /* arredondei as bordas */
+                font-size: 16px; /* aumentei um pouco o tamanho da fonte */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>WhatsApp Sem Salvar</h1>
+        <form id="whatsappForm">
+            <div class="form-group">
+                <label for="phoneNumber">Número de telefone com DDD (sem espaços):</label>
+                <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="Exemplo: 8699991234">
+            </div>
+            <div class="button-container">
+                <button type="submit" class="btn btn-success btn-block">WhatsApp Web</button>
+                <button type="button" class="btn btn-info btn-block" onclick="redirectToWhatsAppApp()">WhatsApp App</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>&copy; 2024 WhatsApp Sem Salvar</p>
+    </footer>
+
+    <!-- Scripts do Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        document.getElementById('whatsappForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const phoneNumber = document.getElementById('phoneNumber').value;
+
+            if (phoneNumber) {
+                // Abre uma nova guia para o WhatsApp Web com o número de telefone
+                const whatsappWebURL = `https://web.whatsapp.com/send?phone=55${phoneNumber}`;
+                window.open(whatsappWebURL, '_blank');
+            } else {
+                alert('Por favor, insira um número de telefone.');
+            }
+        });
+
+        function redirectToWhatsAppApp() {
+            const phoneNumber = document.getElementById('phoneNumber').value;
+
+            if (phoneNumber) {
+                // Abre uma nova guia para o WhatsApp App com o número de telefone
+                const whatsappAppURL = `https://api.whatsapp.com/send?phone=55${phoneNumber}`;
+                window.open(whatsappAppURL, '_blank');
+            } else {
+                alert('Por favor, insira um número de telefone.');
+            }
+        }
+    </script>
+</body>
+</html>
